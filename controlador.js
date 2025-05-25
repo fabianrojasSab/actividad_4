@@ -34,6 +34,9 @@ var numAleatorio
 var puntaje = 0;
 var vista = new Vista();
 
+var nivel = 1;
+var puntosParaSiguienteNivel = 5;
+
 /*al cargar la pagina lanza el metodo iniciar asociado al evento LOAD*/
 //window.addEventListener("load", iniciar, false);
 
@@ -130,6 +133,19 @@ function colicion(Obj1, Obj2){
 	}
 }
 
+function iniciarJuego(juego) {
+    let nombre = document.getElementById("nombre").value;
+    vista.cargarPlantilla(juego);
+    vista.mostrarNombreJugador(nombre); // Nueva función
+    vista.CargarElementos();
+    main();
+}
+
+// Añade este método a la clase Vista:
+mostrarNombreJugador(nombre) 
+{
+    document.getElementById("jugador-info").innerHTML = `Jugador: ${nombre}`;
+}
 
 
 

@@ -14,6 +14,10 @@ class Vista {
 		}
 	}
 
+    mostrarNombreJugador(nombre) {
+        document.getElementById("jugador-info").innerHTML = `Jugador: <strong>${nombre}</strong> | Nivel: <span id="nivel">1</span>`;
+    }
+
     //carga los elementos en la pantalla
     CargarElementos(){
         canvas = document.getElementById("canvas");
@@ -60,18 +64,27 @@ class Vista {
     }
 
     //se desaparecen los cuadrados cuando se chocan con la burbuja
-    DeleteCuadrados(){
-        for(let i = 0; i < cantidadCuadrados ; i ++){
-            let x = colicion(burbuja,cuadrados[i])
-            if (x) {
-                var indice = i ; // obtenemos el indice
-                cuadrados.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
-                cantidadCuadrados = cuadrados.length // se asigna la nueva cantidad de cuadrados
-                puntaje = puntaje + 1;
-                document.getElementById("puntaje").innerHTML = puntaje;
-            }
+    DeleteCuadrados() {
+    for(let i = 0; i < cantidadCuadrados; i++) {
+        let x = colicion(burbuja, cuadrados[i]);
+        if (x) {
+            var indice = i;
+            cuadrados.splice(indice, 1);
+            cantidadCuadrados = cuadrados.length;
+            puntaje = puntaje + 1;
+            document.getElementById("puntaje").innerHTML = puntaje;
         }
     }
+
+    // Nueva detección de colisión con cuadrados malos
+    for(let i = 0; i < cantidadCuadradosMalos; i++) {
+        if(colicion(burbuja, cuadradosMalos[i])) {
+            // Reiniciar juego
+            this.reiniciarJuego();
+            break;
+        }
+    }
+}
 
     //aumenta el tamaño de la burbuja cuando se chocan con la burbuja
     AumentarTamaño(){
@@ -85,7 +98,26 @@ class Vista {
         }
     }
 
+    reiniciarJuego() {
+        alert(`¡Game Over! Puntaje final: ${puntaje}`);
+        puntaje = 0;
+        radioBurbuja = 30;
+        posBurbuja = {x:400, y:200};
+        cuadrados = [];
+        cuadradosMalos = [];
     
-
-
+    // Volver a crear los elementos
+    for(let i = 0; i < cantidadCuadrados; i++) {
+        cuadrados.push(new Cuadrado());
+        }
+    for(let i = 0; i < cantidadCuadradosMalos; i++) {
+        cuadradosMalos.push(new CuadradoMalo());
+        }
+    
+    document.getElementById("puntaje").innerHTML = puntaje;
+}
+    //muestra el puntaje
+    MostrarPuntaje(){
+        document.getElementById("puntaje").innerHTML = puntaje;
+    }
 }
