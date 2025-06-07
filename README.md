@@ -10,4 +10,8 @@ de la actividad "Actividad 4 - Utilizando sistemas de control de versiones"
 
 A continuacion, ingresaran sus datos haciendo uso de los comando de git:
 
+Nombre: Sara Vergara Velez
+Correo electrónico: sverga10@estudiante.ibero.edu.co
+ID: 100169917 
+
 

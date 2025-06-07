@@ -20,8 +20,20 @@
 }
 
 #puntaje {
-    background-color: rgb(255, 0, 234);
+    background-color: rgb(206, 208, 212);
     height: 100px;
     font-size: 80px;
     text-align: center;
+}
+
+/* Añade esto a tu index.css */
+#jugador-info {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#puntaje {
+    font-size: 1.5em;
+    color: #2c3e50;
 }
