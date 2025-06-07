@@ -86,6 +86,8 @@ function main(){
 	
 	//elimina el cuadrado cuando choca con la burbuja
 	vista.DeleteCuadrados();
+
+	verificarColisionConCuadradosMalos();
 }
 
 
@@ -130,6 +132,15 @@ function colicion(Obj1, Obj2){
 	}
 }
 
+function verificarColisionConCuadradosMalos() {
+	for (let i = 0; i < cuadradosMalos.length; i++) {
+		if (colicion(burbuja, cuadradosMalos[i])) {
+			alert("¡Perdiste! La burbuja fue tocada por un cuadrado malo.");
+			window.location.reload(); // recarga la página para reiniciar
+			return;
+		}
+	}
+}
 
 
 
