@@ -34,9 +34,6 @@ var numAleatorio
 var puntaje = 0;
 var vista = new Vista();
 
-var nivel = 1;
-var puntosParaSiguienteNivel = 5;
-
 /*al cargar la pagina lanza el metodo iniciar asociado al evento LOAD*/
 //window.addEventListener("load", iniciar, false);
 
@@ -89,6 +86,8 @@ function main(){
 	
 	//elimina el cuadrado cuando choca con la burbuja
 	vista.DeleteCuadrados();
+
+	verificarColisionConCuadradosMalos();
 }
 
 
@@ -133,18 +132,14 @@ function colicion(Obj1, Obj2){
 	}
 }
 
-function iniciarJuego(juego) {
-    let nombre = document.getElementById("nombre").value;
-    vista.cargarPlantilla(juego);
-    vista.mostrarNombreJugador(nombre); // Nueva función
-    vista.CargarElementos();
-    main();
-}
-
-// Añade este método a la clase Vista:
-mostrarNombreJugador(nombre) 
-{
-    document.getElementById("jugador-info").innerHTML = `Jugador: ${nombre}`;
+function verificarColisionConCuadradosMalos() {
+	for (let i = 0; i < cuadradosMalos.length; i++) {
+		if (colicion(burbuja, cuadradosMalos[i])) {
+			alert("¡Perdiste! La burbuja fue tocada por un cuadrado malo.");
+			window.location.reload(); // recarga la página para reiniciar
+			return;
+		}
+	}
 }
 
 
